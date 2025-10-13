@@ -2,14 +2,13 @@
 
 MyHealthPal is a cloud-based health analytics web application that provides personalized health risk assessments using machine learning. Users input health data and receive automated email reports with BMI calculations and risk predictions.
 
-
 # CPSC 491 – Software Engineering Project
- Professor: Lidia Morrison  
- Department of Computer Science
- California State University, Fullerton
- Fall 2025
-Group: Parsa Banaei, Kevin Bestauros, Michael Garcia, Rasha Boura
 
+Professor: Lidia Morrison
+Department of Computer Science
+California State University, Fullerton
+Fall 2025
+Group: Parsa Banaei, Kevin Bestauros, Michael Garcia, Rasha Boura
 
 ## 🚀 Features
 
