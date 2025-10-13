@@ -1,0 +1,26 @@
+{
+  "best_obesity_model": "Logistic Regression",
+  "obesity_performance": {
+    "accuracy": 0.9844916714531878,
+    "precision": 0.9789473684210527,
+    "recall": 0.9647302904564315,
+    "f1": 0.9717868338557993,
+    "auc": 0.9988052824641832
+  },
+  "heart_disease_performance": {
+    "accuracy": 0.9375,
+    "auc": 0.8755539023838017
+  },
+  "feature_names": [
+    "RIDAGEYR",
+    "Gender_Male",
+    "BMXHT",
+    "BMXWT",
+    "Activity_Level_Encoded"
+  ],
+  "activity_levels": [
+    "Active",
+    "Moderate",
+    "Sedentary"
+  ]
+}

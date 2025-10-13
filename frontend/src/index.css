@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom health theme colors */
+:root {
+  --health-primary: #10b981; /* Emerald-500 */
+  --health-secondary: #3b82f6; /* Blue-500 */
+  --health-accent: #06b6d4; /* Cyan-500 */
+  --health-warning: #f59e0b; /* Amber-500 */
+  --health-danger: #ef4444; /* Red-500 */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8fafc;
+}
+
+/* Custom component styles */
+.bmi-underweight {
+  @apply text-blue-600 bg-blue-50 border-blue-200;
+}
+
+.bmi-normal {
+  @apply text-green-600 bg-green-50 border-green-200;
+}
+
+.bmi-overweight {
+  @apply text-yellow-600 bg-yellow-50 border-yellow-200;
+}
+
+.bmi-obese {
+  @apply text-red-600 bg-red-50 border-red-200;
+} 
