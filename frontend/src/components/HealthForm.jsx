@@ -4,6 +4,9 @@ import { User, Mail, Heart, Activity, Ruler, Scale, Users, Cigarette, Send, Chec
 import BMICalculator from './BMICalculator';
 import api from '../services/api';
 
+// REQUIREMENT 2: When the user opens the health assessment, the system shall present a form with inputs
+// REQUIREMENT 3: When the user enters their height and weight, the system calculates their BMI in real-time
+// REQUIREMENT 4: When the user submits the form, the system shall validate all inputs
 const HealthForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -19,10 +22,10 @@ const HealthForm = () => {
     reset
   } = useForm();
 
-  // Watch form values for real-time BMI calculation
+  // REQUIREMENT 3: Watch form values for real-time BMI calculation
   const watchedValues = watch();
 
-  // Convert feet/inches to cm for BMI calculation
+  // REQUIREMENT 3: Convert feet/inches to cm for real-time BMI calculation
   useEffect(() => {
     const { heightFeet, heightInches } = watchedValues;
     if (heightFeet && heightInches !== undefined) {
@@ -32,7 +35,7 @@ const HealthForm = () => {
     }
   }, [watchedValues.heightFeet, watchedValues.heightInches]);
 
-  // Convert lbs to kg for BMI calculation
+  // REQUIREMENT 3: Convert lbs to kg for real-time BMI calculation
   useEffect(() => {
     const { weight } = watchedValues;
     if (weight) {
@@ -41,11 +44,14 @@ const HealthForm = () => {
     }
   }, [watchedValues.weight]);
 
+  // REQUIREMENT 4: Submit and validate form inputs
+  // REQUIREMENT 12: Send health report via email within 5 seconds
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
+      // REQUIREMENT 2: Prepare payload with all required form inputs
       const payload = {
         age: parseInt(data.age),
         gender: data.gender,
@@ -58,14 +64,14 @@ const HealthForm = () => {
         email: data.email
       };
 
-      // Submit health assessment
+      // REQUIREMENT 4: Submit health assessment with validated inputs
       const response = await api.post('/api/health-assessment', payload);
       const results = response.data;
       
       setAssessmentResults(results);
       setSubmitStatus({ type: 'success', message: 'Health assessment completed successfully!' });
 
-      // Send email report
+      // REQUIREMENT 12: Send email report within 5 seconds
       try {
         await api.post(`/api/send-report/${results.assessment_id}`);
         setSubmitStatus({ 
@@ -74,6 +80,7 @@ const HealthForm = () => {
         });
       } catch (emailError) {
         console.error('Email sending failed:', emailError);
+        // REQUIREMENT 17: Error logging
         setSubmitStatus({ 
           type: 'warning', 
           message: 'Assessment completed but email report could not be sent.' 
@@ -81,6 +88,7 @@ const HealthForm = () => {
       }
 
     } catch (error) {
+      // REQUIREMENT 17: Error logging and handling
       console.error('Submission error:', error);
       setSubmitStatus({ 
         type: 'error', 
@@ -123,7 +131,7 @@ const HealthForm = () => {
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Age */}
+                {/* REQUIREMENT 4: Age validation (18-100 years) */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Age (years)
@@ -168,7 +176,7 @@ const HealthForm = () => {
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Height */}
+                {/* REQUIREMENT 4: Height validation (4-7 feet) */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Height
@@ -207,7 +215,7 @@ const HealthForm = () => {
                   )}
                 </div>
 
-                {/* Weight */}
+                {/* REQUIREMENT 4: Weight validation (80-400 pounds) */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Weight (lbs)

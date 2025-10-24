@@ -17,9 +17,9 @@ class EmailService:
     Email service for MyHealthPal health reports using Gmail SMTP
     
     Handles:
-    - Sending HTML email reports via Gmail SMTP
-    - Generating personalized health report templates
-    - Managing email delivery status
+    - REQUIREMENT 12: Sending email reports within 5 seconds
+    - REQUIREMENT 13: Generating professional HTML email templates
+    - REQUIREMENT 19: Displaying medical disclaimers in reports
     - Error handling and logging
     """
     
@@ -43,9 +43,11 @@ class EmailService:
         self.connected = True
         logger.info(f"Gmail email service initialized - SMTP: {self.smtp_server}:{self.smtp_port}")
     
+    # REQUIREMENT 12: Send health report via email within 5 seconds
+    # REQUIREMENT 13: Generate professional HTML email template
     async def send_health_report(self, assessment_data: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Send a comprehensive health assessment report via Gmail SMTP
+        REQUIREMENT 12: Send a comprehensive health assessment report via Gmail within 5 seconds
         
         Args:
             assessment_data: Complete assessment data including results
@@ -58,11 +60,11 @@ class EmailService:
             if not user_email:
                 return {'success': False, 'error': 'No email address provided'}
             
-            # Generate HTML email content
+            # REQUIREMENT 13: Generate HTML email content with professional template
             html_content = self._generate_html_report(assessment_data)
             subject = "Your MyHealthPal Health Assessment Report"
             
-            # Send via Gmail SMTP
+            # REQUIREMENT 12: Send via Gmail SMTP (within 5 seconds)
             return await self._send_via_smtp(user_email, subject, html_content, assessment_data)
                 
         except Exception as e:
@@ -121,15 +123,17 @@ class EmailService:
             logger.error(f"Gmail SMTP error: {e}")
             return {'success': False, 'error': f"SMTP error: {str(e)}"}
     
+    # REQUIREMENT 13: Generate professional HTML email template with risk indicators
+    # REQUIREMENT 19: Include medical disclaimers in email report
     def _generate_html_report(self, assessment_data: Dict[str, Any]) -> str:
         """
-        Generate comprehensive HTML health assessment report
+        REQUIREMENT 13: Generate comprehensive HTML health assessment report with professional template
         
         Args:
             assessment_data: Complete assessment data
             
         Returns:
-            HTML email content
+            HTML email content with risk indicators and disclaimers
         """
         try:
             # Extract data
@@ -138,10 +142,10 @@ class EmailService:
             assessment_id = assessment_data.get('id', 'N/A')
             timestamp = assessment_data.get('timestamp', datetime.now(timezone.utc).isoformat())
             
-            # Generate recommendations (you could integrate ML service here)
+            # REQUIREMENT 10: Generate recommendations
             recommendations = self._generate_recommendations(assessment_data)
             
-            # HTML template
+            # REQUIREMENT 13: Professional HTML email template
             html_template = """
 <!DOCTYPE html>
 <html lang="en">
@@ -369,10 +373,10 @@ class EmailService:
             </ol>
         </div>
         
-        <!-- Disclaimer -->
+        <!-- REQUIREMENT 19: Medical disclaimer stating tool is not medical advice -->
         <div class="disclaimer">
             <h3>⚠️ Important Medical Disclaimer</h3>
-            <p><strong>This assessment is for educational purposes only and is not intended to replace professional medical advice, diagnosis, or treatment.</strong></p>
+            <p><strong>REQUIREMENT 19: This assessment is for educational purposes only and is not intended to replace professional medical advice, diagnosis, or treatment.</strong></p>
             <p>Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read in this report.</p>
             <p><strong>In case of a medical emergency, immediately call your doctor or 911.</strong></p>
         </div>

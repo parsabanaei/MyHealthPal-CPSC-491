@@ -2,10 +2,14 @@ import React from 'react';
 import { Brain, Heart, Shield, TrendingUp, Users, Award } from 'lucide-react';
 import HealthForm from '../components/HealthForm';
 
+// REQUIREMENT 1: Display MyHealthPal landing page
+// REQUIREMENT 19: Display medical disclaimers
+// REQUIREMENT 22: Responsive design for different devices
 const Home = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
+      {/* REQUIREMENT 1: Hero Section of landing page */}
+      {/* REQUIREMENT 22: Responsive layout */}
       <section className="bg-gradient-to-br from-health-primary to-health-accent text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -169,7 +173,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Disclaimer Section */}
+      {/* REQUIREMENT 19: Medical disclaimer stating tool is not medical advice */}
       <section className="py-12 bg-yellow-50 border-t border-yellow-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-lg p-6 border border-yellow-200">
@@ -178,6 +182,7 @@ const Home = () => {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Important Medical Disclaimer</h3>
                 <div className="text-sm text-gray-700 space-y-2">
+                {/* REQUIREMENT 19: Disclaimer stating platform is educational only */}
                 <p>
                   <strong>This platform is for educational and informational purposes only.</strong> 
                   The health risk assessments and recommendations provided by MyHealthPal are not 

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Heart, Shield, Mail } from 'lucide-react';
 
+// REQUIREMENT 18: Provide contact email for technical support
+// REQUIREMENT 22: Responsive design for different devices
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* REQUIREMENT 22: Responsive grid layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
@@ -41,7 +44,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact & Disclaimers */}
+          {/* REQUIREMENT 18: Contact information for technical support */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Important Information</h4>
             <div className="space-y-3">
@@ -51,6 +54,7 @@ const Footer = () => {
                   This platform provides educational health insights only. Always consult healthcare professionals for medical decisions.
                 </p>
               </div>
+              {/* REQUIREMENT 18: Contact email for technical support */}
               <div className="flex items-start space-x-2">
                 <Mail className="h-5 w-5 text-health-accent mt-0.5 flex-shrink-0" />
                 <div className="text-sm text-gray-400">

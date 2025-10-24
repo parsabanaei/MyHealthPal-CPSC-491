@@ -16,18 +16,20 @@ class MLService:
     Real ML prediction service for MyHealthPal using pre-trained models
     
     Handles:
-    - Loading pre-trained model files (.pkl)
-    - Converting user inputs to model format
-    - Real obesity risk predictions
-    - Real heart disease risk predictions
-    - Clinical diabetes risk assessments
-    - BMI calculations and categorization
+    - REQUIREMENT 5: BMI calculations and categorization
+    - REQUIREMENT 6: Obesity risk predictions
+    - REQUIREMENT 7: Heart disease risk predictions
+    - REQUIREMENT 8: Diabetes risk predictions  
+    - REQUIREMENT 9: Overall health score generation
+    - REQUIREMENT 10: Personalized recommendations
+    - REQUIREMENT 20: Graceful degradation with fallback algorithms
     """
     
     def __init__(self):
         """Initialize ML service and load models"""
         self.models_path = Path(__file__).parent.parent / "models"
         self.models_loaded = False
+        # REQUIREMENT 20: Fallback mode for graceful degradation
         self.fallback_mode = False
         
         # Model containers
@@ -157,9 +159,10 @@ class MLService:
             logger.error(f"Error converting inputs: {e}")
             raise ValueError(f"Invalid input format: {e}")
     
+    # REQUIREMENT 5: Calculate BMI and categorize as Underweight, Normal, Overweight, or Obese
     def calculate_bmi(self, height_cm: float, weight_kg: float) -> Tuple[float, str]:
         """
-        Calculate BMI and category
+        REQUIREMENT 5: Calculate BMI and category
         
         Args:
             height_cm: Height in centimeters
@@ -172,7 +175,7 @@ class MLService:
             height_m = height_cm / 100
             bmi = weight_kg / (height_m ** 2)
             
-            # BMI categorization
+            # REQUIREMENT 5: BMI categorization - Underweight, Normal, Overweight, Obese
             if bmi < 18.5:
                 category = "Underweight"
             elif bmi < 25:
@@ -188,9 +191,11 @@ class MLService:
             logger.error(f"Error calculating BMI: {e}")
             return 25.0, "Normal Weight"
     
+    # REQUIREMENT 6: Predict obesity risk using ML model
+    # REQUIREMENT 20: Graceful degradation to fallback if ML model fails
     def predict_obesity_risk(self, model_features: Dict[str, Any]) -> Tuple[str, float]:
         """
-        Predict obesity risk using the real ML model
+        REQUIREMENT 6: Predict obesity risk using the real ML model
         
         Args:
             model_features: Model-ready features
@@ -199,6 +204,7 @@ class MLService:
             Tuple of (risk_category, risk_percentage)
         """
         try:
+            # REQUIREMENT 20: Use fallback algorithm if models fail
             if self.fallback_mode or self.obesity_model is None:
                 return self._fallback_obesity_prediction(model_features)
             
@@ -266,9 +272,11 @@ class MLService:
             logger.error(f"Error in obesity prediction: {e}")
             return self._fallback_obesity_prediction(model_features)
     
+    # REQUIREMENT 7: Predict heart disease risk using ML model
+    # REQUIREMENT 20: Graceful degradation to fallback if ML model fails
     def predict_heart_disease_risk(self, model_features: Dict[str, Any]) -> Tuple[str, float]:
         """
-        Predict heart disease risk using ML model + clinical rules
+        REQUIREMENT 7: Predict heart disease risk using ML model + clinical rules
         
         Args:
             model_features: Model-ready features
@@ -277,6 +285,7 @@ class MLService:
             Tuple of (risk_category, risk_percentage)
         """
         try:
+            # REQUIREMENT 20: Use fallback algorithm if models fail
             if self.fallback_mode or self.heart_disease_model is None:
                 return self._fallback_heart_disease_prediction(model_features)
             
@@ -374,9 +383,10 @@ class MLService:
             logger.error(f"Error in heart disease prediction: {e}")
             return self._fallback_heart_disease_prediction(model_features)
     
+    # REQUIREMENT 8: Predict diabetes risk using rule-based and ML methods
     def predict_diabetes_risk(self, model_features: Dict[str, Any]) -> Tuple[str, float]:
         """
-        Predict diabetes risk using clinical assessment
+        REQUIREMENT 8: Predict diabetes risk using clinical assessment
         
         Args:
             model_features: Model-ready features
@@ -385,7 +395,7 @@ class MLService:
             Tuple of (risk_category, risk_percentage)
         """
         try:
-            # Clinical diabetes risk assessment
+            # REQUIREMENT 8: Clinical diabetes risk assessment using rules
             risk_score = 0
             
             # Age factor
@@ -448,6 +458,8 @@ class MLService:
             logger.error(f"Error in diabetes prediction: {e}")
             return "Medium", 40.0
     
+    # REQUIREMENT 9: Generate combined overall health score from all risk predictions
+    # REQUIREMENT 10: Generate personalized health recommendations
     def get_comprehensive_assessment(self, user_input: Dict[str, Any]) -> Dict[str, Any]:
         """
         Get comprehensive health risk assessment
@@ -456,27 +468,29 @@ class MLService:
             user_input: Raw user input data
             
         Returns:
-            Complete assessment results
+            Complete assessment results with BMI, risks, health score, and recommendations
         """
         try:
             # Convert inputs to model format
             model_features = self.convert_inputs(user_input)
             
-            # Calculate BMI
+            # REQUIREMENT 5: Calculate BMI
             bmi, bmi_category = self.calculate_bmi(
                 model_features['BMXHT'], 
                 model_features['BMXWT']
             )
             
-            # Get risk predictions
+            # REQUIREMENT 6-8: Get risk predictions (obesity, heart disease, diabetes)
             obesity_risk, obesity_score = self.predict_obesity_risk(model_features)
             heart_risk, heart_score = self.predict_heart_disease_risk(model_features)
             diabetes_risk, diabetes_score = self.predict_diabetes_risk(model_features)
             
-            # Calculate overall health score (10-point scale)
+            # REQUIREMENT 9: Calculate overall health score (10-point scale)
             avg_risk = (obesity_score + heart_score + diabetes_score) / 3
             health_score = max(1, 10 - (avg_risk / 10))
             
+            # REQUIREMENT 9: Return overall health score
+            # REQUIREMENT 10: Include personalized recommendations
             return {
                 'bmi': bmi,
                 'bmi_category': bmi_category,
@@ -497,8 +511,9 @@ class MLService:
             logger.error(f"Error in comprehensive assessment: {e}")
             raise ValueError(f"Assessment failed: {e}")
     
+    # REQUIREMENT 20: Fallback algorithm when ML models fail
     def _fallback_obesity_prediction(self, features: Dict[str, Any]) -> Tuple[str, float]:
-        """Fallback obesity prediction using clinical rules"""
+        """REQUIREMENT 20: Fallback obesity prediction using clinical rules"""
         try:
             bmi, _ = self.calculate_bmi(features['BMXHT'], features['BMXWT'])
             age = features['RIDAGEYR']
@@ -532,8 +547,9 @@ class MLService:
         except:
             return "Medium", 45.0
     
+    # REQUIREMENT 20: Fallback algorithm when ML models fail
     def _fallback_heart_disease_prediction(self, features: Dict[str, Any]) -> Tuple[str, float]:
-        """Fallback heart disease prediction using clinical rules"""
+        """REQUIREMENT 20: Fallback heart disease prediction using clinical rules"""
         try:
             risk_score = 20  # Base risk
             
@@ -570,9 +586,10 @@ class MLService:
         except:
             return "Medium", 40.0
     
+    # REQUIREMENT 10: Generate personalized health recommendations based on assessment results
     def _generate_recommendations(self, bmi_category: str, obesity_risk: str, 
                                  heart_risk: str, diabetes_risk: str) -> List[str]:
-        """Generate personalized health recommendations"""
+        """REQUIREMENT 10: Generate personalized health recommendations"""
         recommendations = []
         
         # BMI-based recommendations

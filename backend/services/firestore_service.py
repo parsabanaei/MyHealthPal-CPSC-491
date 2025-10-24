@@ -20,8 +20,9 @@ class FirestoreService:
     Firestore database service for MyHealthPal
     
     Handles all database operations including:
-    - Storing health assessments
-    - Retrieving assessment data
+    - REQUIREMENT 11: Storing health assessments in Firestore with timestamps
+    - REQUIREMENT 14: Retrieving previous assessments by ID or email
+    - REQUIREMENT 15: Data encryption at rest (handled by Firestore)
     - Updating assessment records
     - Managing user data
     """
@@ -53,9 +54,11 @@ class FirestoreService:
             logger.error(f"Failed to initialize Firestore: {e}")
             self.connected = False
     
+    # REQUIREMENT 11: Save health assessment to Firestore with timestamps
+    # REQUIREMENT 15: Data encrypted at rest by Firestore
     async def save_assessment(self, assessment_data: Dict[str, Any]) -> bool:
         """
-        Save a health assessment to Firestore
+        REQUIREMENT 11: Save a health assessment to Firestore with timestamps
         
         Args:
             assessment_data: Complete assessment data dictionary
@@ -73,10 +76,11 @@ class FirestoreService:
             if not doc_id:
                 raise ValueError("Assessment data must include an 'id' field")
             
-            # Add server timestamp
+            # REQUIREMENT 11: Add server timestamp
             assessment_data['server_timestamp'] = firestore.SERVER_TIMESTAMP
             
-            # Save to Firestore
+            # REQUIREMENT 11: Save to Firestore
+            # REQUIREMENT 15: Data automatically encrypted at rest by Firestore
             doc_ref = self.db.collection(self.collection_name).document(doc_id)
             doc_ref.set(assessment_data)
             
@@ -87,9 +91,10 @@ class FirestoreService:
             logger.error(f"Error saving assessment: {e}")
             return False
     
+    # REQUIREMENT 14: Retrieve previous assessment by ID
     async def get_assessment(self, assessment_id: str) -> Optional[Dict[str, Any]]:
         """
-        Retrieve a health assessment by ID
+        REQUIREMENT 14: Retrieve a health assessment by ID
         
         Args:
             assessment_id: Unique assessment identifier
@@ -103,6 +108,7 @@ class FirestoreService:
                 logger.info(f"Mock: Would retrieve assessment {assessment_id}")
                 return self._get_mock_assessment(assessment_id)
             
+            # REQUIREMENT 14: Retrieve assessment from Firestore
             doc_ref = self.db.collection(self.collection_name).document(assessment_id)
             doc = doc_ref.get()
             
@@ -147,9 +153,10 @@ class FirestoreService:
             logger.error(f"Error updating assessment {assessment_id}: {e}")
             return False
     
+    # REQUIREMENT 14: Retrieve previous assessments by email
     async def get_assessments_by_email(self, email: str, limit: int = 10) -> List[Dict[str, Any]]:
         """
-        Retrieve assessments for a specific email address
+        REQUIREMENT 14: Retrieve assessments for a specific email address
         
         Args:
             email: User email address
@@ -163,7 +170,7 @@ class FirestoreService:
                 logger.info(f"Mock: Would retrieve assessments for {email}")
                 return [self._get_mock_assessment("mock-id")]
             
-            # Query assessments by email, ordered by timestamp
+            # REQUIREMENT 14: Query assessments by email, ordered by timestamp
             query = (self.db.collection(self.collection_name)
                     .where('user_email', '==', email)
                     .order_by('timestamp', direction=firestore.Query.DESCENDING)

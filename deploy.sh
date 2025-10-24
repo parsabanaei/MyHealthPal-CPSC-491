@@ -4,6 +4,7 @@
 # Direct gcloud CLI deployment to Cloud Run
 # Author: MyNutriAI Team
 # Version: 1.0.0
+# REQUIREMENT 21: Google Cloud Run provides auto-scaling (0-10 instances) based on load
 
 set -e  # Exit on any error
 

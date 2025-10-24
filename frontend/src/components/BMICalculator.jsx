@@ -1,8 +1,10 @@
 import React from 'react';
 import { Calculator, TrendingUp } from 'lucide-react';
 
+// REQUIREMENT 3: When the user enters their height and weight, the system calculates their BMI in real-time
+// REQUIREMENT 5: When the BMI is calculated, the system categorizes it as Underweight, Normal, Overweight, or Obese
 const BMICalculator = ({ heightCm, weightKg }) => {
-  // Calculate BMI
+  // REQUIREMENT 3: Calculate BMI in real-time
   const calculateBMI = () => {
     if (!heightCm || !weightKg || heightCm <= 0 || weightKg <= 0) {
       return null;
@@ -11,11 +13,12 @@ const BMICalculator = ({ heightCm, weightKg }) => {
     return (weightKg / (heightM * heightM)).toFixed(1);
   };
 
-  // Get BMI category and styling
+  // REQUIREMENT 5: Get BMI category - Underweight, Normal, Overweight, or Obese
   const getBMICategory = (bmi) => {
     if (!bmi) return { category: 'Enter height and weight', className: 'text-gray-500', bgClass: 'bg-gray-50' };
     
     const bmiValue = parseFloat(bmi);
+    // REQUIREMENT 5: BMI < 18.5 = Underweight
     if (bmiValue < 18.5) {
       return { 
         category: 'Underweight', 
@@ -23,6 +26,7 @@ const BMICalculator = ({ heightCm, weightKg }) => {
         bgClass: 'bg-blue-50 border-blue-200',
         description: 'Below normal weight range'
       };
+    // REQUIREMENT 5: BMI 18.5-24.9 = Normal Weight
     } else if (bmiValue < 25) {
       return { 
         category: 'Normal Weight', 
@@ -30,6 +34,7 @@ const BMICalculator = ({ heightCm, weightKg }) => {
         bgClass: 'bg-green-50 border-green-200',
         description: 'Healthy weight range'
       };
+    // REQUIREMENT 5: BMI 25-29.9 = Overweight
     } else if (bmiValue < 30) {
       return { 
         category: 'Overweight', 
@@ -37,6 +42,7 @@ const BMICalculator = ({ heightCm, weightKg }) => {
         bgClass: 'bg-yellow-50 border-yellow-200',
         description: 'Above normal weight range'
       };
+    // REQUIREMENT 5: BMI >= 30 = Obese
     } else {
       return { 
         category: 'Obese', 
