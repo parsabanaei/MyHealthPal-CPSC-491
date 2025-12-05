@@ -2,7 +2,7 @@ import React from 'react';
 import { Brain, Heart, Shield, TrendingUp, Users, Award } from 'lucide-react';
 import HealthForm from '../components/HealthForm';
 
-// REQUIREMENT 1: Display MyHealthPal landing page
+// REQUIREMENT 1: Display MyHealthPal AI landing page
 // REQUIREMENT 19: Display medical disclaimers
 // REQUIREMENT 22: Responsive design for different devices
 const Home = () => {
@@ -25,7 +25,7 @@ const Home = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              MyHealthPal
+              MyHealthPal AI
             </h1>
             <p className="text-xl md:text-2xl mb-4 opacity-90">
               AI-Powered Health Risk Assessment
@@ -183,11 +183,11 @@ const Home = () => {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Important Medical Disclaimer</h3>
                 <div className="text-sm text-gray-700 space-y-2">
                 {/* REQUIREMENT 19: Disclaimer stating platform is educational only */}
-                <p>
-                  <strong>This platform is for educational and informational purposes only.</strong> 
-                  The health risk assessments and recommendations provided by MyHealthPal are not 
-                  intended to replace professional medical advice, diagnosis, or treatment.
-                </p>
+                  <p>
+                    <strong>This platform is for educational and informational purposes only.</strong> 
+                  The health risk assessments and recommendations provided by MyHealthPal AI are not 
+                    intended to replace professional medical advice, diagnosis, or treatment.
+                  </p>
                   <p>
                     Always seek the advice of your physician or other qualified health provider 
                     with any questions you may have regarding a medical condition. Never disregard 

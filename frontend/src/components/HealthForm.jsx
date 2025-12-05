@@ -90,9 +90,20 @@ const HealthForm = () => {
     } catch (error) {
       // REQUIREMENT 17: Error logging and handling
       console.error('Submission error:', error);
+      
+      // REQUIREMENT 21: Handle Cloud Run cold start timeouts
+      let errorMessage = 'Failed to complete assessment. Please try again.';
+      if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+        errorMessage = 'The server is starting up (this happens when idle). Please try submitting again - it should be much faster now!';
+      } else if (error.response?.status >= 500) {
+        errorMessage = 'Server error occurred. Please try again in a moment.';
+      } else if (!error.response) {
+        errorMessage = 'Network error. Please check your internet connection and try again.';
+      }
+      
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Failed to complete assessment. Please try again.' 
+        message: errorMessage
       });
     } finally {
       setIsSubmitting(false);
@@ -379,6 +390,13 @@ const HealthForm = () => {
                     </>
                   )}
                 </button>
+                
+                {/* REQUIREMENT 21: Inform users about potential cold start delays */}
+                {isSubmitting && (
+                  <p className="text-sm text-gray-600 text-center">
+                    ⏱️ First-time requests may take 15-30 seconds as the server starts up...
+                  </p>
+                )}
                 
                 {assessmentResults && (
                   <button

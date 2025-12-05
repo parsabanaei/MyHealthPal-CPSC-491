@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class EmailService:
     """
-    Email service for MyHealthPal health reports using Gmail SMTP
+    Email service for MyHealthPal AI health reports using Gmail SMTP
     
     Handles:
     - REQUIREMENT 12: Sending email reports within 5 seconds
@@ -31,7 +31,7 @@ class EmailService:
         self.smtp_username = "mynutriai@gmail.com"
         self.smtp_password = "nxil yivo tfyo ydea"
         self.sender_email = "mynutriai@gmail.com"
-        self.sender_name = "MyHealthPal Health Team"
+        self.sender_name = "MyHealthPal AI Health Team"
         
         # Override with environment variables if available (for production security)
         self.smtp_server = os.getenv("SMTP_SERVER", self.smtp_server)
@@ -62,7 +62,7 @@ class EmailService:
             
             # REQUIREMENT 13: Generate HTML email content with professional template
             html_content = self._generate_html_report(assessment_data)
-            subject = "Your MyHealthPal Health Assessment Report"
+            subject = "Your MyHealthPal AI Health Assessment Report"
             
             # REQUIREMENT 12: Send via Gmail SMTP (within 5 seconds)
             return await self._send_via_smtp(user_email, subject, html_content, assessment_data)
@@ -152,7 +152,7 @@ class EmailService:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyHealthPal Health Assessment Report</title>
+    <title>MyHealthPal AI Health Assessment Report</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -266,7 +266,7 @@ class EmailService:
 </head>
 <body>
     <div class="header">
-        <h1>🏥 MyHealthPal Health Assessment Report</h1>
+        <h1>🏥 MyHealthPal AI Health Assessment Report</h1>
         <p>Personalized health insights powered by artificial intelligence</p>
     </div>
     
@@ -383,9 +383,9 @@ class EmailService:
     </div>
     
     <div class="footer">
-        <p>© 2025 MyHealthPal - AI-Powered Health Risk Assessment</p>
+        <p>© 2025 MyHealthPal AI - AI-Powered Health Risk Assessment</p>
         <p>For questions about this report, contact: mynutriai@gmail.com</p>
-        <p>To retake the assessment, visit: <a href="https://mynutriai-frontend-5m3z5i4pga-uc.a.run.app">MyHealthPal Platform</a></p>
+        <p>To retake the assessment, visit: <a href="https://mynutriai-frontend-5m3z5i4pga-uc.a.run.app">MyHealthPal AI Platform</a></p>
     </div>
 </body>
 </html>
@@ -543,9 +543,9 @@ class EmailService:
         return f"""
         <html>
         <body style="font-family: Arial, sans-serif; padding: 20px;">
-            <h1>MyHealthPal Health Assessment Report</h1>
+            <h1>MyHealthPal AI Health Assessment Report</h1>
             <p>Assessment ID: {assessment_data.get('id', 'N/A')}</p>
-            <p>Thank you for using MyHealthPal. Your health assessment has been completed.</p>
+            <p>Thank you for using MyHealthPal AI. Your health assessment has been completed.</p>
             <p>For detailed results, please visit our platform or contact support.</p>
             <p><strong>Disclaimer:</strong> This is for educational purposes only and not a substitute for professional medical advice.</p>
         </body>

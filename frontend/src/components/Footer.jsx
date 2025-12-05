@@ -16,7 +16,7 @@ const Footer = () => {
                 <Heart className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">MyHealthPal</h3>
+                <h3 className="text-xl font-bold">MyHealthPal AI</h3>
                 <p className="text-sm text-gray-400">Health Risk Assessment</p>
               </div>
             </div>
@@ -69,7 +69,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © 2025 MyHealthPal. All rights reserved. | 
+            © 2025 MyHealthPal AI. All rights reserved. | 
             <span className="text-health-warning"> Not a substitute for professional medical advice.</span>
           </p>
         </div>

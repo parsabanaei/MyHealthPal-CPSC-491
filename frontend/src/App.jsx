@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Mission from './pages/Mission';
 
-// REQUIREMENT 1: When the user navigates to the URL, the system shall display the MyHealthPal landing page
+// REQUIREMENT 1: When the user navigates to the URL, the system shall display the MyHealthPal AI landing page
 // REQUIREMENT 22: When the user accesses the application on different devices, the system shall display a responsive interface
 function App() {
   return (

@@ -14,12 +14,12 @@ MyHealthPal is a cloud-based health analytics web application that provides pers
 
 ### 👥 Development Team
 
-| Name            
-| --------------- | 
-| Parsa Banaei    | 
-| Kevin Bestauros | 
-| Michael Garcia  | 
-| Rasha Boura     |
+| Name |
+|------|------
+| Parsa Banaei
+| Kevin Bestauros
+| Michael Garcia
+| Rasha Boura
 
 ---
 

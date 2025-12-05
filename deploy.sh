@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# MyNutriAI Deployment Script
+# MyHealthPal Deployment Script
 # Direct gcloud CLI deployment to Cloud Run
-# Author: MyNutriAI Team
+# Author: MyHealthPal Team
 # Version: 1.0.0
 # REQUIREMENT 21: Google Cloud Run provides auto-scaling (0-10 instances) based on load
 
@@ -206,7 +206,7 @@ cleanup() {
 
 # Main deployment function
 main() {
-    echo "🚀 MyNutriAI Deployment Script"
+    echo "🚀 MyHealthPal Deployment Script"
     echo "================================"
     echo "Project: $PROJECT_ID"
     echo "Region: $REGION"
@@ -242,7 +242,7 @@ main() {
     
     # Success message
     echo ""
-    echo "🎉 MyNutriAI deployed successfully!"
+    echo "🎉 MyHealthPal deployed successfully!"
     echo "=================================="
     echo "Frontend URL: $FRONTEND_URL"
     echo "Backend URL:  $BACKEND_URL"

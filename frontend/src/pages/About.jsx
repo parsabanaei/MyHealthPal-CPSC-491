@@ -7,7 +7,7 @@ const About = () => {
       {/* Header Section */}
       <section className="bg-gradient-to-br from-health-secondary to-health-primary text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">About MyHealthPal</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">About MyHealthPal AI</h1>
           <p className="text-xl md:text-2xl opacity-90">
             Revolutionizing personal health assessment through artificial intelligence
           </p>
@@ -20,7 +20,7 @@ const About = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Platform</h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              MyHealthPal is a cutting-edge health analytics platform that leverages machine learning 
+              MyHealthPal AI is a cutting-edge health analytics platform that leverages machine learning 
               to provide personalized health risk assessments. Our mission is to democratize access 
               to advanced health insights, empowering individuals to make informed decisions about 
               their wellness journey.
@@ -284,7 +284,7 @@ const About = () => {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Medical Disclaimer</h3>
                 <p className="text-sm text-gray-700">
-                  MyHealthPal provides educational health insights and risk assessments based on 
+                  MyHealthPal AI provides educational health insights and risk assessments based on 
                   machine learning analysis. This platform is not intended to replace professional 
                   medical advice, diagnosis, or treatment. Always consult with qualified healthcare 
                   providers for medical decisions and emergency situations.

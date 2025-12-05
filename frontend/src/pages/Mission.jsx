@@ -25,7 +25,7 @@ const Mission = () => {
             </div>
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Empowering Health Awareness</h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              At MyHealthPal, we believe that everyone deserves access to personalized health insights. 
+              At MyHealthPal AI, we believe that everyone deserves access to personalized health insights. 
               Our mission is to bridge the gap between advanced medical analytics and individual 
               health awareness, making sophisticated risk assessment tools accessible to all.
             </p>
@@ -264,7 +264,7 @@ const Mission = () => {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Important Health Disclaimer</h3>
                 <div className="text-sm text-gray-700 space-y-2">
                   <p>
-                    <strong>Educational Purpose Only:</strong> MyHealthPal is designed for educational 
+                    <strong>Educational Purpose Only:</strong> MyHealthPal AI is designed for educational 
                     and awareness purposes. Our risk assessments provide general health insights 
                     based on population data and should not be considered medical diagnoses.
                   </p>
