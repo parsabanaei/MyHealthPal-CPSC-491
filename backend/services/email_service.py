@@ -28,9 +28,9 @@ class EmailService:
         # Gmail SMTP Configuration
         self.smtp_server = "smtp.gmail.com"
         self.smtp_port = 587  # Using 587 (STARTTLS)
-        self.smtp_username = "mynutriai@gmail.com"
-        self.smtp_password = "nxil yivo tfyo ydea"
-        self.sender_email = "mynutriai@gmail.com"
+        self.smtp_username = "smtp_username@gmail.com"
+        self.smtp_password = "smtp_password"
+        self.sender_email = "sender_email@gmail.com"
         self.sender_name = "MyHealthPal AI Health Team"
         
         # Override with environment variables if available (for production security)
